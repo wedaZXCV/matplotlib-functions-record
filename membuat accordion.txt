@@ -1,0 +1,99 @@
+Berarti kalau if jumlah angka tercukupi, maka 
+berapa jumlah angka yang ingin kita tampilkan sebelum ...
+
+jadi misalkan terdapat 3 buah angka, maka selanjutnya ...
+
+dan 3 buah angka untuk di akhir juga.
+berarti yg mungkin minimal terdapat 7 buah pages.
+
+kata lainnya kalau kurang dari 7, maka tampilkan seperti biasa saja dulu.
+
+Misalkan 5, maka 5 ... 5, 5 +5+1 = 11, minimal 11.
+
+titik tengah yang 3 adalah 4, 123 4 567, kalau misalkan page number ke 2, accordion tetep.
+
+1 sebelum page number 4.
+kalau di 3, maka
+...34567, jadi minimal lah bukan 7, tapi
+
+3 + 5 + 3 = 11
+jadi minimal adalah 11.
+misal:
+
+1 2 3 4 5 6 7 8 9 a b c d e f g h i j k l m n
+
+1 2 3 ... l m n				<< page di 1
+
+1 2 3 ... 4 5 6 7 8 ... l m n		<< page di 3
+
+1 2 3 ... 4 5 6 7 8 ... l m n		<< page di 4
+
+//harus ada 2 di kiri, 2 di kanan.
+// bagian awal
+1 2 3 ... 4 5 6 7 8 ... l m n		<< page di 5
+
+1 2 3 ... 4 5 6 7 8 ... l m n		<< page di 6
+===============================================================
+// bagian pertengahan
+1 2 3 ... 5 6 7 8 9 ... l m n		<< page di 7
+
+1 2 3 ... 6 7 8 9 a ... l m n		<< page di 8
+===============================================================
+// bagian akhir
+1 2 3 ... g h i j k ... l m n		<< page di i
+
+1 2 3 ... g h i j k ... l m n		<< page di j
+
+1 2 3 ... g h i j k ... l m n		<< page di k
+
+1 2 3 ... g h i j k ... l m n		<< page di l
+
+====
+1 2 3 ... l m n				<< page di n
+
+
+jika 11 tercapai, maka mulai membentuk accordion.
+kalau sebelum 11, maka tampilkan page secara normal.
+
+if $pages > $minimal then do accordion.		(modify displaying page buttons)
+	ini berarti menampilkan tommbol tidak sekadar menggunakan for echo, tetapi menggunakan:
+		
+		// untuk pages depan (1 dan 2) atau belakang (m dan n)
+		i=1 for 3x echo.
+		echo ...
+		i=$pages-3 for 3x echo.	
+
+		// untuk pages mulai dari 3 dst.  <<<	 if $_POST["page-number"] >= 3 AND <= $pages-2 :
+		i=1 for 3x echo.
+		echo ...
+		// check if page-number is 3 or $pages-2
+			true (case 3):	i = 3+1
+			true (case $pages-2):	i = $pages-7
+		// else:	<masuk nested if baru untuk mengecek apakah di-tengah tengah.
+			// if ($_POST["page-number"] - 2) > 3 OR ($_POST["page-number"] + 2) < $pages-2
+				true: <anggota yg bisa dibuat tengah - tengah>
+					i = $_POST["page-number"] - 2
+				false: <tidak ditengah>
+					// if $_POST["page-number"] <= 3+2
+						i= 3+1
+					// elif $_POST["page-number"] >= ($pages-2)-2
+						i= $pages-7
+		KESEMUA i TERSEBUT KEMUDIAN DI- for echo 5x
+		echo ...
+		i=$pages-3 for 3x echo.
+			
+	
+else then
+	display with for echo
+
+
+
+
+
+
+
+
+
+
+
+
