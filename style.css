@@ -134,6 +134,15 @@ body {
   display: inline-block;
 }
 
+.pagination{
+  width: fit-content;
+  margin: auto;
+}
+
+.t-dot-pages{
+  display: inline-block;
+}
+
 .list-item-btn-back{
   margin-top: 20px;
 }
@@ -199,4 +208,8 @@ body {
 
 .button-button{
   cursor: pointer;
+}
+
+.most-bottom{
+  margin-top: 60px;
 }

@@ -362,10 +362,12 @@ format:		H H H H ... H H H	<< kalau lebih dari 14 lah
 		H H ... H H H H ... H H << kalau mencapai 14 
 		H H H H ... H H H	<< kalau sudah mendekati ujung, kembali seperti ini lagi.		done!!
 
-PROGRESS NOW
 then.	Buat duplikasi tombol paginasi di bagian bawah halaman.
-	Juga tampilannya di tengah - tengah
+	Juga tampilannya di tengah - tengah				done!!
+=========================== PENGERJAAN FUNCTIONS LIST TELAH SELESAI
 
+PROGRESS NOW
+sekarang berikan activity list fitur seperti pada functions list yang telah dibuat.
 
 CATATAN CATATAN:::
 ======================================================================
