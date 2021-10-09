@@ -1,0 +1,411 @@
+HINT:
+* Always looking for PROGRESS NOW section to get informed where to start the progress again.
+Creating data base and save data via POST PHP to our local database......
+* cari  GARIS BESAR   untuk mendapatkan informasi progress ke depan secara garis besar.	(Fitur yang harus ada untuk dikatakan dia lengkap).
+* cari   PROGRESS LATER   untuk mendapatkan informasi perbaikan ke depan yang agak mendetail.
+
+
+
+
+At the first time, we need to figure out how to do some mechanism to accomplish....
+
+3.	Create Local Database.....		>> done
+
+
+
+
+
+1.	Get data from HTML form
+2.	Store it into Local database using PHP	>> done
+
+latihan database.:
+
+table name: function	-> 	id 		: INT(255) UNSIGNED
+				,name		: VARCHAR(50)
+				,desc		: TEXT CHARSET utf8
+				,code		: MEDIUMTEXT CHARSET utf8
+				,imgurl		: TEXT CHARSET utf8
+
+jadi ada beberapa fungsi dalam MySQL:
+
+SHOW DATABASES;
+CREATE DATABASE database_name;
+USE DATABASES;
+SELECT database();
+CREATE TABLE table_name(column_name data_type(digit), so on);
+SHOW TABLES;
+DESCRIBE table_name;
+
+jadi pada tahapan ini, kita telah berhasil membuat sebuah database dengan tablenya yang siap diisi dari HTML kita.
+
+next is... "How to populate MySQL table from HTML PHP script?"
+* pada SQL langsung menggunakan perintah INSERT INTO.
+perintah pada MySQL:
+INSERT INTO pet
+       VALUES ('Puffball','Diane','hamster','f','1999-03-30',NULL);
+
+
+pada PHP di HTML juga menggunakan perintah INSERT INTO. Namun berada dalam tanda "" dan di-assign ke dalam suatu variabel.
+$sql = "INSERT INTO MyGuests (firstname, lastname, email)
+VALUES ('John', 'Doe', 'john@example.com')";
+
+Progress:
+berhasil menginput data ke MySQL database menggunakan fungsi berikut:
+$sql = "INSERT INTO functi VALUES($id, '$name', '$explaination', '$scod', '$imagie');";
+    if($conn->query($sql) === TRUE){
+      echo "New record created successfully";
+    } else {
+      echo "Error: ". $sql . "<br>" . $conn->error;
+    }
+PROGRESS NOW:
+So now we just need to know how to gather data from given HTML form and add it into PHP varible to fullfil the sended data.
+Jadi kita telah berhasil menginput data yang dimasukkan melalui form HTML.
+
++ Buat if untuk mengecek apakah form masih kosong, supaya tidak menampilkan pesan error.	done!!
+menggunakan isset.
+if(!isset($_POST['fu-id']) || !isset($_POST['fu-na'])){
+      
+    }else {
+kode eksekusi selanjutnya }
+
+
++ Buat halaman untuk di function-list.html							done!!
+	hal ini akan memerlukan RETREIVE data from MySQL database untuk menampilkannya...
+jadi kita dapat menggunakan li atau td (listitem atau table cell)
+kita gunakan li
+
+PROGRESS NOW
++ Buat php baru untuk function detail
+	ini melibatkan php untuk ke halaman FUNCTION-DETAILS.PHP yang berarti halaman itu juga perlu tahu function name yang diklik,
+	lalu di query kita dapat SELECT WHERE name = nama function name yang kita klik.	<< berarti $row["name"]
+	Untuk SELECT WHERE lakukan di halaman FUNCTION-DETAILS.PHP
+	Untuk meneruskan variabel, harus memerlukan form baik dengan metode POST ataupun GET.
+
+jadi dari php function-page, php function-detail menerima variabel yang diteruskan lewat form submit. Jadi setiap tombol li
+adalah submit button.									done!!
+
+PROGRESS NOW
++ Tampilan php baru untuk di function detail.	done!!
+
+PROGRESS NOW:
++ pada index.html >> functions-page.html      kita perlu membuat tombol untuk mengedit fungsi,
+						hal yg tidak efektif adalah ketika membuat form lagi dan lagi untuk halaman yang sama
+						namun fungsi php yang berbeda.
+						kenapa tidak buat action yang berupa variabel??
+
+		GUNAKAN FILE PHP YANG SAMA, YAKNI NEW-FUNCTION.PHP
+		jika tombol new function diklik	>> action="new-fu.php"
+		jika tombol edit function diklik >> action="edit-fu.php"
+
+		jadi, action=$newOrEdit
+		kemungkinan baik tombol new atau edit ketika diklik memberikan variabel yang di-passkan ke halaman selanjutnya
+			yang bisa dijadikan pedoman IF supaya dapat mengenali apakah tombol new atau edit yang telah ditekan.
+		berarti setiap tombol new atau edit adalah form, yang memiliki action="NEW-FUNCTION.PHP"
+			demikian setelah menekan tombol new atau edit, maka NEW-FUNCTION.PHP akan tertrigger.
+			ternyata kita bisa memberikan atribut value dan name pada <button>
+			nantik di NEW-FUNCTION.php nya, kita bisa IF-kan, . . . . . 
+			
+			$newOrEdit = $POST_['name'];
+			if ($newOrEdit === 'value'){
+				(lakukan hal apakah dia ini dari tombol new atau edit)
+			}
+PROGRESS NOW
++ tombol untuk menghapus fungsi sudah cukup layak digunakan.	done!!
++ Buat mekanisme tombol untuk mengedit fungsi, gunakan halaman edit-function.php
+	dalam hal mengedit fungsi, hal yang tidak bisa diubah lagi adalah id fungsi.
+	yang mana merupakan referensi WHERE ketika mengganti isi row di database.
+		Kemudian, kita perlu mengubah peletakan HTML nya, yg mana kemudian HTML form isinya dipopulate dengan <?php ?> dari ID data database.
+		Target action file php yang baru dari form yang baru (form edit) tidak bisa sama - sama edit.php lagi.
+		Jadi dia harus ada file tambahan confirm-edit.php untuk menyimpan kode fungsi yang menerima eksekusi perubahan isi
+		fungsi dan mengirimnya ke database fungsi matplotlib.			done!!
++ Isi halaman confirm-edit.php untuk menerima form dari edit-function.php		done!!
+
++ Perbaharui index.html menjadi index.php untuk menampilkan apa yang seharusnya.
+	* Setiap tombol akan me-link ke halaman yang lainnya.				done!!
+	* retreive data dari mySQL untuk 5 fungsi teratas yang telah diinput ke database.	done!!
+
++ Buat tabel baru di database MySQL untuk menampung data activity list, entry sesuai poin ^ di bawah		done!!
+Table name: activities
+
+Entry				Type
+
+ID				int unsigned
+
+name				varchar(50)
+
+expl				TEXT CHARSET utf8
+
+scod				MEDIUMTEXT CHARSET utf8
+
+img				TEXT CHARSET utf8
+
+fuid				TEXT CHARSET utf8
+PROGRESS NOW (di bawah ini, membuat add-activity yg masalah utama adalah adding engaged functions)
++ Sebelum membuat activity list, kita membuat add activity terlebih dahulu supaya bisa di-populate nanti pada activity listnya.
+	Jadi ketentuan input yang dibutuhkan mengikut keterangan poin + di bawah.
+note:	tidak dapat membuat form di dalam form.
+	jadi satu - satunya cara untuk mem-populate list fungsi adalah dengan cara:
+	1.	fungsi dapat diketik manual dalam textarea terlebih dahulu dan form kemudian di-submit.		done!!
+	2.	Setelah tombol SAVE ditekan (tombol jalankan submit form tsb.) simpan fungsi yg diketik manual tersebut secara biasa ke db. done!!
+	3.	Antara fungsi satu dengan yang lainnya dipisahkan dengan (Enter).  done!!
+
+	Hal yang menentukan apakah fungsi tersebut ada atau tidak adalah saat menampilkan detail activity. sbb:
+	1. detail activity ditampilkan, bagian concern kita adalah menampilkan list fungsi yang terlibat.
+	2. Apakah list fungsi yang terlibat ada di dalam db tabel functi?
+	PROGRESS NOW
+	3. Reg ex terlebih dahulu data string dari fungsi yang terlibat yang antarfungsi dipisahkan oleh titik koma.
+		reg ex berhasil, tinggal display item saja ke <ul>		<< mungkin akan error karena terakhir foreach tidak jalan di antara ".  ." pada echo.
+
+	reg-ex mengalami perubahan penampilan entah kenapa?		<< masalah besar
+								yang menyebabkan tidak validnya penampilan ke halaman.	
+
+								done!!
+								yaa untuk sementara bisa..
+								tetapi tidak nyaman dalam meng-input daftar enganged function nya in first time.
+
+	4. Di bawah ini, $enName merupakan hasil Reg ex per nama fungsi.
+		$enName = $row["name"];
+		$sql = SELECT name FROM functi WHERE name="$enName";		//$enName = engaged name
+		$result = querry->$sql;
+		pseudocode:	kalau $result ada, maka lakukan echo supaya menampilkan kotak tombol yg bisa diklik menuju halaman detail fungsi tersebut.			kalau $result tidak ada, maka echo yang dilakukan hanya menampilkan tulisan saja.
+			   (dari di atas dapat dimengerti kegiatan query terjadi dua kali,
+								1. untuk mendapatkan nama fungsi terlibat dari fungsi-list pd tbl activities
+									(bisa jadi $row["name"] harus di reg-ex terlebih dahulu)
+								2. untuk menyocokkan ada tidak-nya nama fungsi dari tabel functi.
+									cara menyocokkannya adalah dengan WHERE pada $sql di atas.
+					cara lainnya mungkin dengan menghitung COUNT, kalau COUNT lebih besar dari 0, maka dia ada, dan
+echo sesuai keterangan psudocode di atas.	done!!		error disebabkan oleh kekurangan tanda \"	\" pada sql command yg diberikan.
+
+
++ Kemudian lanjutkan dengan membuat activity list dan add activity. Jadi activity memiliki ketentuan sebagai berikut:
+	* List activity pada awalnya menampilkan beberapa activity seperti proses pembuatan tertentu.
+	* List activity bisa di-klik sehingga masuk ke activity-detail.php yang memuat:
+		^ Activity ID
+		^ Activity name
+		^ Description
+		^ Gambar
+		^ Source code complete
+		^ list fungsi yang terlibat, masing - masing bisa diklik kalau dia ada di List Function  >> mengarah ke function-detail.php
+			kalau misalnya belum ada, maka tetap bisa dimuat di list fungsi yang terlibat, namun tampilannya berbeda yang mengindikasikan bahwa dia tidak dapat diklik. Kalau diklik, maka mengarah ke new-function.php yang nama fungsi sudah dipopulate dengan nama fungsi tsb.	done!!
+
+PROGRESS NOW
+	5. Menuju ke detail fungsi langsung ke function-detil.php		done!!
+	6. Tombol add this function jika tidak ada di function list. bagian yg ini:		done!!
+<form action=\"new-function.php\" method=\"post\" class=\"engaged-func-list\">
+              <li class=\"list-item\">".$poin."</li>
+            </form>
+Detail-nya:
+		ini bisa dibuat mengarah langsung ke halaman new-function.php	, namun harus meng-auto generate nama fungsi tersebut dengan menerima $_POST["nama-fungsi"].		
+
+Berarti pada new-function.php		if $_POST["nama-fungsi"] exists, maka assign variabel $nama = ...
+											print pada tag input name menggantikan placeholder
+					else, maka do nothing, (paling bawah setelah form)	done!!		<< penyelesaiannya mirip, tapi agak beda dan sudah selesai.
+
+
+	7. Pada laman list activity tambahkan tombol untuk edit activity 		done!!
+			dan delete activity.						done!!
+	
+
+
+============================================================
+
+PROGRESS LATER:
++ Buat tampilan ukuran font ketikan untuk source-code dan deskripsi menjadi lebih besar.
++ Buat supaya pada database MySQL dapat meng-generate secara otomatis id fungsi yang terlibat
++ Buat tombol dan mekanisme search function pada halaman functions-page dan activities-page.
++ Buat supaya pada new-function atau new-activity, source code dengan tanda petik yang diketik diterjermahkan dahulu menjadi \" oleh regex sebelum
+string siap dikirim ke database MySQL.
+
++ tombol Back To Main page.... buat ke index.php
+
+=============================================================
+GARIS BESAR (perulangan penjelasan kembali):
++ Add activity						PROGRESS NOW
+	Menambahkan activity yg baru		>> Tidak perlu memasukkan id karena sudah auto generate
+						>> Source code tidak perlu menuliskan \" untuk tanda " (penulisan tanda petik sudah auto jadi ")
+
+
++ Add Function
+	Menambahkan fungsi yg baru		>> Tidak perlu memasukkan id karena sudah auto generate
+						>> Source code tidak perlu menuliskan \" untuk tanda " (penulisan tanda petik sudah auto jadi ")
+
+
++ Activity List
+	Menampilkan Daftar Aktivitas		>> Tombol Delete dan Edit
+						>> Urut berdasarkan nama dari A - Z	 
+						>> Fitur Cari berdasarkan nama aktivitas
+						>> Initial populate hanya 15 item saja, kalau scroll ke bawah lagi, baru lanjut populate
+							jadi, tidak semuanya di-populate
+
+
++ Function List
+	Menampilkan Daftar Fungsi		>> Tombol Delete dan Edit
+						>> Urut berdasarkan nama dari A - Z	done!!
+						>> Fitur Cari berdasarkan nama fungsi	done!!
+						>> Initial populate hanya 15 item saja, kalau scroll ke bawah lagi, baru lanjut populate
+							jadi, tidak semuanya di-populate	done!! << through pagination.
+===========================================
+
+Mengurutkan data dari database supaya dapat urut dari A sampai Z. Pertama - tama kita harus memilah isi dari $row["name"].....
+Tapi bagaimana sih caranya? Untuk mengurutkan data kan kita bisa membandingkan antara item[0] dengan item[1]. Iterasi pertama khusus item[0] yang terus bergeser. Misalkan item[0] dibandingkan dengan item[1], lalu ternyata lebih besar sehingga ditukar. item[1] bandingkan dengan item[2]
+^ Jadi pertama - tama bagaimana caranya mendapatkan kode ASCII characther pertama dari nama fungsi?
+^ Mendapatkan index dari $row	<< caranya isi dari $row["name"] kita masukkan ke array baru (juga isi dari $row["id"], terus kita bisa mengurutkan dgn regEx seperti cara yang di atas, terus tukar yg lebih besar dalam kalang for loop.
+
+Sepertinya algoritma pengurutan berhasil, kita perlu menguji dengan masukan yg berbeda ....
+			seperti: Add Graphic dengan Add Custom dengan Add Button dengan Add Custim	done!!		<< algoritma juga sudah diperbaharui.
+
+============================================
+MEKANISME TOMBOL CARI
+
+Apakah kita bisa menggunakan input form untuk tombol cari ini?
+Kalau begitu, jadinya kita memerlukan serverside php berbeda lagi dong untuk mekanisme action-nya.
+Mekanisme action yaa.... yaaa seperti itulah.
+
+Input yaa input.... bisa diketik, kemudian ada tombol find di sebelah kanan-nya. RegEx untuk match "yng dicari" dengan "yng tersedia".
+Jadi, tombol klik itu bagaimana dia mentrigger regEx nya?
+Itulah kita jadinya memerlukan front-end scripting supaya lebih efisien dalam menautkan tombol Find dengan RegEx tersebut.	<< Javascript akan melakukan ini semua. (findFunction.js)
+
+What about do SELECT * WHERE name = fromInput  << need not RegEx
+jadi, bagaimana caranya menjalankan php untuk mysqli dengan javascript click button?
+		lagipula kita akan membutuhkan file php lagi kan.... ini dah juga masalahnya.
+Kenapa tidak form langsung, kemudian if {post include fungsi yg menyebabkan query SELECT di atas.
+Kalau post dari tombol cari itu ada, maka kita bisa 
+
+if FIND ada, maka lakukan ini...
+else if FIND tidak ada, maka lakukan normal...
+Jadi karena ini selector flow (IF) maka kita tidak perlu khawatir kalau penampilan hasil search-nya akan berbeda dengan penampilan fungsi.
+
+> Untuk reload halaman, $_POST dari halaman sebelumnya dihapus (lihat catatan PHP lagi, ada screenshot-nya).
+Kalau menggunakan SQL SELECT, maka pemberian nama harus sangat tepat untuk mencari keberadaan fungsi tersebut dalam database.
+Jangan gunakan SQL SELECT, tetap RegEx.		<< SQL bisa melakukan RegEx, jadi tetap SQL dengan built-in RegEx-nya.    done!!
+
+======================================================================
+PROGRESS NOW
+INITIAL POPULATE HANYA 15 ITEM SAJA
+
+Jadi, kita perlu mem-populate item di awal hanya sebanyak 15 buah saja. Sisanya ketika kita scroll ke bawah, dia muncul lagi 15, hilang lagi 15.
+Sepertinya ada metode canggih untuk melakukan hal ini.
+
+https://code.tutsplus.com/id/tutorials/how-to-paginate-data-with-php--net-2928		<< nama aktivitas tersebut adalah paginasi yang memerlukan link halaman - halaman. Pembuatannya dengan OOP
+
+link tersebut tidak secara gamblang menjelaskan bagaimana paginasi dibuat.
+Algoritma yang dibutuhkan dalam hal ini adalah sebagai berikut.
+1.	Menampilkan kotak halaman....
+2.	Menampilkan baris item dari kotak yg terpilih....
+
+
+1.	Jadi pertama - tama kita perlu melakukan count terhadap jumlah row data pada tabel functi.
+2.	Bagi row tersebut menjadi beberapa bagian berdasarkan item yg tampil per halaman, jadi misal ada data sebanyak 150 / 15 item = jumlah paginasi yang dibuat ($jumlahPage).
+3.	SELECT all dulu... karena kita mengurutkan data dari array baru yg dibuat << cara ini kurang efektif sih... tapi karena sudah jadi, maka kita lanjut aja deeh....
+4.	$jumlahPage mengontrol jumlah tombol php paginasi yang dibuat.
+5.	cara supaya halaman 1 - 15 misal kita klik halaman 2, maka item yang muncul adalah array[15 - 29]. caranya adalah :
+					pengaturan index, increment sebanyak 15 kali
+		pengaturan index:	no_halaman * item_tampil - 15 = lokasi_index
+misal:	no_halaman = 1
+	1 * 15 - 15 = 0 = lokasi_index
+	
+	no_halaman = 2
+	2 * 15 - 15 = 15
+6.	tombol php paginasi mengarah ke file php yang sama.	<< supaya proses SELECT tidak terjadi lagi, maka kita meneruskan status data tersebut. Apabila sudah TRUE, maka tidak lakukan itu lagi. TRUE di-trigger oleh input hidden dalam form tombol paginasi yang value-nya menjadi TRUE ketika aplikasi berhasil mendapatkan data dari MySQL.
+
+7.	Apakah data array diteruskan pada php reload-nya atau tidak? teruskan saja
+
+	Apakah PHP bisa meneruskan array?	<< bisa dengan serialize
+	POST:
+	status_data
+	array
+	array_id
+	page_number
+
+	POST ini diterapkan ketika meng-klik salah satu angka halaman...
+
+8.	Buat array baru yg menampung nilai seperti perhitungan poin 5.
+
+9.	Algoritma sudah clear, ikuti dan lengkapi functions-page-copy.php	
+
+10.	Pada bagian bukan initial display ($_POST["status_data"] is set)	
+	ini berarti retreive data dari method POST:
+	status_data
+	array
+	array_id
+	page_number
+
+11.	Lakukan hapus POST value (kyknya sih ga perlu)
+	
+DONE!!!!	<< Paginasi berhasil dengan baik... Tahap penyempurnaan di bawah adalah kelanjutannya.
+
+PROGRESS NOW
+then.	Masih terdapat warning apabila item < displaying. Singkirkan, supaya hanya ada n-item saja yang ditampilkan.	done!!
+then.	Sepertinya penggabungan dengan fitur find tidak akan jadi masalah.	done!!
+	Kalang if penyeleksi. Jika if _POST['status_data'] ada dan _POST['fu-search'] ada, maka lakukan perintah fitur cari
+	Berarti:
+		else if((_POST['status_data'] ada && _POST['fu-search'] ada) || _POST['fu-search'] ada){
+			// lakukan perintah fitur cari
+		}		...(2)
+
+then.	Berarti secara total:		done!!
+	if(_POST['status_data'] ada){
+		// lakukan display dari array berdasarkan page number yg di-klik
+	} (2)
+
+	else{
+		// lakukan display paling awal dari query (query hanya dilakukan satu kali).
+	}
+
+then.	Return button untuk keluar dari mode Search 	done!!
+
+jadi display awal dan display search merupakan dua file yang berbeda.
+	
+then.	Paginasi mungkin banyak tombol, jadi nanti dibuat cara meng-akordion supaya bagian yg ditengah - tengah jadi ... ketika kita berada di bagian yg paling depan atau paling belakang.
+	Kalau berada pada bagian tengah - tengah, maka yang paling depan yang menjadi ... dan yg paling belakang.
+format:		H H H H ... H H H	<< kalau lebih dari 14 lah
+		H H ... H H H H ... H H << kalau mencapai 14 
+		H H H H ... H H H	<< kalau sudah mendekati ujung, kembali seperti ini lagi.		done!!
+
+PROGRESS NOW
+then.	Buat duplikasi tombol paginasi di bagian bawah halaman.
+	Juga tampilannya di tengah - tengah
+
+
+CATATAN CATATAN:::
+======================================================================
+UNTUK TERKONEKSI KE MYSQL DATABASE DENGAN PHP dapat dilakukan dengan:
+memerlukan tiga buah instance untuk terhubung, yakni:
+	> dbhost
+	> dbuser
+	> dbpass
+sama seperti pada MySQL Workbench.
+connection dapat menggunakan API, Connector, Extension, Driver.
+======================================================================
+KETERANGAN PERBAIKAN PHP.INI
+untuk mengaktifkan mysqli, kita coba mengcopy php.ini-development menjadi php.ini yang valid.
+Kemudian, kita ubah supaya ; di depan ekstension mysqli dihilangkan sehingga php dapat mengakses ekstensi tersebut.
+
+	ekstensi tersebut sudah terdapat dalam folder ext, php_mysqli.dll
+tujuannya karena sebelumnya lokasi file php.ini dideteksi sebagai none.
+
+Jadi permasalahannnya memang file php.ini harus dibuat dari file php.ini-development yang diubah namanya menjadi php.ini
+
+echo(phpinfo());		<< fungsi untuk menampilkan keterangan lengkap mengenai instalasi php kita.
+======================================================================
+LOKASI FILE DATABASE BESERTA TABEL - TABELNYA
+C:\ProgramData\MySQL\MySQL Server 8.0\Data\latihan\functi.ibd
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

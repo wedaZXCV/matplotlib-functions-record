@@ -1,0 +1,202 @@
+body {
+  background-color: #a9d7e9;
+}
+
+.wrapper{
+  text-align: center;
+}
+
+.container {
+  margin: auto;
+  width: 80%;
+  background-color: #f3f3f3;
+  border-radius: 10px;
+  padding: 20px 10px 10px 10px;
+}
+
+.box-create{
+  text-align: center;
+}
+.add-new{
+  background-color: #7b94ed;
+  display: inline-block;
+  margin-right: 30px;
+  padding: 10px;
+  border-radius: 10px;
+}
+.button{
+  text-align: left;
+}
+
+.button-button{
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.learned-activities{
+  background-color: #7b94ed;
+  padding: 10px;
+  padding-left: 30px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.learned-functions{
+  background-color: #7b94ed;
+  padding: 10px;
+  padding-left: 30px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.form-rows{
+  background-color: #7b94ed;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+#function-id{
+  width: 700px;
+  height: 35px;
+  border-radius: 5px;
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+/* #input-name{
+  width: 700px;
+  height: 35px;
+  border-radius: 5px;
+  padding-left: 20px;
+  margin-top: 10px;
+} */
+
+.input-fields{
+  width: 700px;
+  height: 35px;
+  border-radius: 5px;
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.input-fields-large{
+  padding-left: 20px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.input-fields-short{
+  width: 350px;
+  height: 35px;
+  border-radius: 5px;
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.search-bar{
+  margin-right: 0%;
+}
+
+#input-code{
+  padding-left: 20px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+#input-expl{
+  padding-left: 20px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+#image-url{
+  width: 700px;
+  height: 35px;
+  border-radius: 5px;
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+#save-function{
+  margin-top: 20px;
+}
+
+.briefing{
+  font-size: 22px;
+  text-align: center;
+}
+
+.pagination-button{
+  padding: 3px;
+  margin-right: 8px;
+  margin-top: 5px;
+  display: inline-block;
+}
+
+.list-item-btn-back{
+  margin-top: 20px;
+}
+
+.list-item-btn-back > .modifier{
+  display: none;
+}
+
+.list-item-btn-back:hover > .modifier{
+  display: inline-block;
+}
+
+.btn-form{
+  width: 80%;
+  display: inline-block;
+}
+
+.edit-button{
+  display: inline-block;
+}
+
+.delete-button{
+  display: inline-block;
+}
+
+.add-new-fu-button{
+  display: inline-block;
+}
+
+.fu-li-activity-detail{
+  display: inline-block;
+}
+
+.list-item-btn{
+  background-color: #7b94ed;
+  padding: 10px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.list-item{
+  color:#f3f3f3;
+  font-size: 18px;
+  font-style: oblique;
+  font-weight: bold;
+}
+
+#list-con{
+  padding-left: 0px;
+  list-style-type: none;
+}
+
+/* index.php */
+.fu-li-btn{
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.button-button{
+  cursor: pointer;
+}
