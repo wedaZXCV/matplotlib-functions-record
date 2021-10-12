@@ -232,10 +232,10 @@ GARIS BESAR (perulangan penjelasan kembali):
 
 + Activity List
 	Menampilkan Daftar Aktivitas		>> Tombol Delete dan Edit
-						>> Urut berdasarkan nama dari A - Z	 
-						>> Fitur Cari berdasarkan nama aktivitas
+						>> Urut berdasarkan nama dari A - Z	 done!!
+						>> Fitur Cari berdasarkan nama aktivitas		done!!
 						>> Initial populate hanya 15 item saja, kalau scroll ke bawah lagi, baru lanjut populate
-							jadi, tidak semuanya di-populate
+							jadi, tidak semuanya di-populate	done!!
 
 
 + Function List
@@ -366,8 +366,12 @@ then.	Buat duplikasi tombol paginasi di bagian bawah halaman.
 	Juga tampilannya di tengah - tengah				done!!
 =========================== PENGERJAAN FUNCTIONS LIST TELAH SELESAI
 
-PROGRESS NOW
+
 sekarang berikan activity list fitur seperti pada functions list yang telah dibuat.
+currently on activities-search.php					done!!
+=========================== PENGERJAAN ACTIVITIES LIST TELAH SELESAI
+PROGRESS NOW
+Source code tidak perlu menuliskan \" untuk tanda " (penulisan tanda petik sudah auto jadi ")
 
 CATATAN CATATAN:::
 ======================================================================
