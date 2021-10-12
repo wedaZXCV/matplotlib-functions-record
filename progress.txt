@@ -372,6 +372,9 @@ currently on activities-search.php					done!!
 =========================== PENGERJAAN ACTIVITIES LIST TELAH SELESAI
 PROGRESS NOW
 Source code tidak perlu menuliskan \" untuk tanda " (penulisan tanda petik sudah auto jadi ")
+pengerjaan kini pada new function
+find:	all we need to do then is re-insert \r\n into the location as \\r\\n
+inside new-function.php
 
 CATATAN CATATAN:::
 ======================================================================
