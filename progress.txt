@@ -376,6 +376,21 @@ pengerjaan kini pada new function
 find:	all we need to do then is re-insert \r\n into the location as \\r\\n
 inside new-function.php
 
+if the \r\n happens multiple of times, yields things like \r\r\r\n\n\n
+jadi kita perlu tahu bagaimana mendeteksi pola \r lebih dari sekali dan diakhiri dengan \n, yang juga \n terjadi lebih dari sekali.
+intinya mendeteksi yang lebih dari sekali.	(gunakan {2}) yang berarti \r terjadi minimal dua kali.
+
+'# \r{2}\n{2} #'
+berarti (\\r dgn any character) berulang sebanyak minimal 2 kali. karena aslinya adalah \\r\r begitu.
+
+#\\r\\r\\r\\r\\n\\n\\n\\n#
+
+\\r\\r\\r\\n\\n\\n\r
+PROGRESS NOW
+dari kasus ini (diatas), masih display pada function detail tidak mau menampilkan \r\n seperti biasa. Itu hanya disambung begitu saja, meskipun pada database MySQL, \r\n sudah berhasil tersimpan sebagaimana diceritakan pada gambar 14-10-2021c.
+Berarti kini, perbaiki cara display pada HTML function detail supaya melibatkan \r\n
+
+
 CATATAN CATATAN:::
 ======================================================================
 UNTUK TERKONEKSI KE MYSQL DATABASE DENGAN PHP dapat dilakukan dengan:

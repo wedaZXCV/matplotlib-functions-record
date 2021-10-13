@@ -1,4 +1,16 @@
 xpoints = np.array([1, 8])
 ypoints = np.array([3, 10])
 
+
+
 plt.plot(xpoints, ypoints, 'o')
+
+
+
+
+
+
+
+$scod = preg_replace('/(\\\n){2}/', "", $scod); // preg_replace cannot be next each other with another preg_repalce
+      echo "<br>new four<br>";
+      echo $scod;
