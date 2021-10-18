@@ -31,6 +31,8 @@
         $result = $conn->query($sql);
         if ($result->num_rows > 0){
           while($row = $result->fetch_assoc()) {
+            // prepare the scod variable to display CRLF format
+            $sourceCode = nl2br(htmlspecialchars($row["scod"]));
             echo "
             <div id=\"function-title\">
               <h2>".$row['name']."</h2>
@@ -48,10 +50,11 @@
             <hr>
             <br>
             <h2> Source Code </h2>
-            <p>
-              ".$row['scod']."
-            </p>
-            
+            <div class=\"source-code\">
+              <p>
+                ".$sourceCode."
+              </p>
+            </div>
             <hr>
             <br>
             ";
