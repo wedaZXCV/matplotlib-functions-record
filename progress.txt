@@ -395,6 +395,22 @@ BUAT POLA TSB UNTUK CODE EXPLANATION JUGA.			done!!		<< namun hanya untuk tanda 
 
 PROGRESS NOW
 * Add function tidak perlu memasukkan id karena sudah auto generate
+	buat menjadi hidden tag inputnya.
+	yang diinputkan adalah id yang belum ada... jadi kita harus mengecek terlebih dahulu id yang dibutuhkan.
+	MIN dari ID yang membuat tidak urut. jadi selisih antara tiap ID harus -1. Kalau b - a = -2, maka gunakan a+1 sebagai ID.
+	Kalau misalnya baru, 0 1 2 3, ini berarti pengurangan ID yg terus terjadi selalu -1, sehingga ID = angka_terakhir + 1.
+
+	TUJUAN: mendapatkan setiap fungsi memiliki ID yang unik
+
+	urutkan ID terlebih dahulu
+	kurangi ID setiapnya, b - a, jika lebih dari -1, maka ID = a+1
+	hingga b = undefined (angka terakhir), ID = b+1
+
+PROGRESS NOW
+masih terdapat error karena bukan 27, melainkan 2 yg 
+not yet for filling the 27 (aka 25, 26, 28, 29, dst)...    still cannot fill the empty id no 27		<< ini penting ketika mengingat adanya hapus fungsi yang akan menyebabkan keloncatan lubang seperti pada baris angka di atas.
+	
+
 
 * Perbaiki ukuran gambar pada function detail
 

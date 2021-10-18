@@ -22,14 +22,98 @@
 
     <div class="form-container">
       <form action="new-function.php" method="post" id="newFunction-form">
-        <div class="form-rows">
-          <div class="labels">
-            <label for="function-id" id="id-label">Function id</label>
-          </div>
-          <div class="fields">
-            <input type="text" name="fu-id" id="function-id" class="input-fields" placeholder="Enter the function id" required>
-          </div>
-        </div>
+        
+    <?php 
+    //Prepare values to store in database table
+    //Check if the form is not filled yet
+    if(!isset($_POST['fu-id']) || !isset($_POST['fu-na'])){
+      include 'db-connection.php';
+      $conn = OpenCon();
+      //close connection happens on the moment after idt declaration
+    } else{
+
+      $id = $_POST["fu-id"];
+      echo "<br><br><br>"; echo($id);
+      $name = $_POST["fu-na"];
+      $scod = $_POST["fu-co"];
+      // change the quotes into \" in order to be successfully able to get inserted in SQL
+      $scod = preg_replace("$\"|\'$","\\\"",$scod);
+
+      // detect endline carrieage return
+      preg_match_all("$\r$",$scod,$matches, PREG_OFFSET_CAPTURE);
+      // echo "<pre>"; print_r($matches); echo "</pre>";   // now we can detect the location of \r
+      
+      //all we need to do then is re-insert \r\n into the location as \\r\\n
+      $newLineLoc = array();
+      foreach($matches[0] as $key=>$value){
+        if($key > 0){
+          $newLineLoc[$key] = $matches[0][$key][1] + ($key * 2);
+        } else {
+          $newLineLoc[$key] = $matches[0][$key][1];
+        }
+      }
+      // firstly first we need to remove any real \r and \n whitespace char
+      $scod = preg_replace("#\n|\r#", "", $scod);
+      foreach($newLineLoc as $key=>$value){
+        $scod = substr_replace($scod, "\\r\\n", $newLineLoc[$key], 0);
+      }
+
+      //if the \r\n happens multiple of times, yields things like \r\r\r\n\n\n
+      // then we need to regex it into a single \r\n
+      $scod = preg_replace('/(\\\r){2,}(\\\n){2,}/', "\\r\\n", $scod); // it must be three times to match \ (backslash)
+      
+      $explaination = $_POST["fu-ex"];
+      $explaination = preg_replace("$\"$","\\\"",$explaination);
+      $explaination = preg_replace("$\'$","\\'",$explaination);
+      $imagie = $_POST["fu-img"];
+
+      //Do connection and send to MySQL server
+      include 'db-connection.php';
+      $conn = OpenCon();
+      echo "Connected Successfully";
+      
+
+      $sql = "INSERT INTO functi VALUES($id, '$name', '$explaination', '$scod', '$imagie');";
+      if($conn->query($sql) === TRUE){
+        echo "New record created successfully";
+      } else {
+        echo "Error: ". $sql . "<br>" . $conn->error;
+      }
+      //close connection happens on the moment after idt declaration
+    }
+  ?>
+        <!--INPUT HIDDEN FOR THE ID -->
+        <input type="hidden" name="fu-id" value=<?php 
+        $sql = "SELECT id FROM functi ORDER BY id;";
+        // code bellow for idt declaration. $idt is the value assigned to input "fu-id"
+        $result = $conn->query($sql);
+        CloseCon($conn);
+        if ($result->num_rows > 0){
+          $itt = 0;
+          $idt = 0;
+          while($row = $result->fetch_assoc()) {
+            $temp = $row["id"];
+            if($itt == 0){
+              if($row["id"] != 0){
+                $idt = 0;
+                break;
+              } else {
+                $idt = $row["id"];
+                // no break;
+              }
+            } else {
+              if(($row["id"] - $temp) > 1){
+                $idt = $temp + 1;
+                break;
+              } else{
+                $idt = $row["id"] + 1;
+              }
+            }
+            $itt += 1;
+          }
+        }
+        echo($idt)?>>
+
         <div class="form-rows">
           <div class="labels">
             <label for="input-name" id="name-label">Function name</label>
@@ -78,63 +162,6 @@
     </div>
 
   </div>
-  <?php 
-    
-    //Prepare values to store in database table
-    //Check if the form is not filled yet
-    if(!isset($_POST['fu-id']) || !isset($_POST['fu-na'])){
-      
-    } else{
-      $id = $_POST["fu-id"];
-      $name = $_POST["fu-na"];
-      $scod = $_POST["fu-co"];
-      // change the quotes into \" in order to be successfully able to get inserted in SQL
-      $scod = preg_replace("$\"|\'$","\\\"",$scod);
-
-      // detect endline carrieage return
-      preg_match_all("$\r$",$scod,$matches, PREG_OFFSET_CAPTURE);
-      // echo "<pre>"; print_r($matches); echo "</pre>";   // now we can detect the location of \r
-      
-      //all we need to do then is re-insert \r\n into the location as \\r\\n
-      $newLineLoc = array();
-      foreach($matches[0] as $key=>$value){
-        if($key > 0){
-          $newLineLoc[$key] = $matches[0][$key][1] + ($key * 2);
-        } else {
-          $newLineLoc[$key] = $matches[0][$key][1];
-        }
-      }
-      // firstly first we need to remove any real \r and \n whitespace char
-      $scod = preg_replace("#\n|\r#", "", $scod);
-      foreach($newLineLoc as $key=>$value){
-        $scod = substr_replace($scod, "\\r\\n", $newLineLoc[$key], 0);
-      }
-
-      //if the \r\n happens multiple of times, yields things like \r\r\r\n\n\n
-      // then we need to regex it into a single \r\n
-      $scod = preg_replace('/(\\\r){2,}(\\\n){2,}/', "\\r\\n", $scod); // it must be three times to match \ (backslash)
-      
-      $explaination = $_POST["fu-ex"];
-      $explaination = preg_replace("$\"$","\\\"",$explaination);
-      $explaination = preg_replace("$\'$","\\'",$explaination);
-      $imagie = $_POST["fu-img"];
-
-      //Do connection and send to MySQL server
-      include 'db-connection.php';
-      $conn = OpenCon();
-      echo "Connected Successfully";
-      
-
-      $sql = "INSERT INTO functi VALUES($id, '$name', '$explaination', '$scod', '$imagie');";
-      if($conn->query($sql) === TRUE){
-        echo "New record created successfully";
-      } else {
-        echo "Error: ". $sql . "<br>" . $conn->error;
-      }
-      CloseCon($conn);
-    }
-    
-    
-  ?>
+  
 </body>
 </html>
