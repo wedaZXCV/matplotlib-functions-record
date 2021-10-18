@@ -90,33 +90,33 @@
       $scod = $_POST["fu-co"];
       // change the quotes into \" in order to be successfully able to get inserted in SQL
       $scod = preg_replace("$\"|\'$","\\\"",$scod);
+
       // detect endline carrieage return
       preg_match_all("$\r$",$scod,$matches, PREG_OFFSET_CAPTURE);
-      //echo "<pre>"; print_r($matches); echo "</pre>";   // now we can detect the location of \r
+      // echo "<pre>"; print_r($matches); echo "</pre>";   // now we can detect the location of \r
       
       //all we need to do then is re-insert \r\n into the location as \\r\\n
       $newLineLoc = array();
       foreach($matches[0] as $key=>$value){
         if($key > 0){
-          $newLineLoc[$key] = $matches[0][$key][1] + 4;
+          $newLineLoc[$key] = $matches[0][$key][1] + ($key * 2);
         } else {
           $newLineLoc[$key] = $matches[0][$key][1];
         }
       }
+      // firstly first we need to remove any real \r and \n whitespace char
+      $scod = preg_replace("#\n|\r#", "", $scod);
       foreach($newLineLoc as $key=>$value){
         $scod = substr_replace($scod, "\\r\\n", $newLineLoc[$key], 0);
       }
 
       //if the \r\n happens multiple of times, yields things like \r\r\r\n\n\n
       // then we need to regex it into a single \r\n
-
-      // but firstly first we need to remove any real \r and \n whitespace char
-
-      $scod = preg_replace("#\n|\r#", "", $scod);
-      
       $scod = preg_replace('/(\\\r){2,}(\\\n){2,}/', "\\r\\n", $scod); // it must be three times to match \ (backslash)
       
       $explaination = $_POST["fu-ex"];
+      $explaination = preg_replace("$\"$","\\\"",$explaination);
+      $explaination = preg_replace("$\'$","\\'",$explaination);
       $imagie = $_POST["fu-img"];
 
       //Do connection and send to MySQL server

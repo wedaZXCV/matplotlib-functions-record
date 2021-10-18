@@ -228,7 +228,7 @@ GARIS BESAR (perulangan penjelasan kembali):
 + Add Function
 	Menambahkan fungsi yg baru		>> Tidak perlu memasukkan id karena sudah auto generate
 						>> Source code tidak perlu menuliskan \" untuk tanda " (penulisan tanda petik sudah auto jadi ")
-
+							done!! 	<< bersamaan dengan CRLF nya.
 
 + Activity List
 	Menampilkan Daftar Aktivitas		>> Tombol Delete dan Edit
@@ -386,9 +386,31 @@ berarti (\\r dgn any character) berulang sebanyak minimal 2 kali. karena aslinya
 #\\r\\r\\r\\r\\n\\n\\n\\n#
 
 \\r\\r\\r\\n\\n\\n\r
-PROGRESS NOW
+
 dari kasus ini (diatas), masih display pada function detail tidak mau menampilkan \r\n seperti biasa. Itu hanya disambung begitu saja, meskipun pada database MySQL, \r\n sudah berhasil tersimpan sebagaimana diceritakan pada gambar 14-10-2021c.
-Berarti kini, perbaiki cara display pada HTML function detail supaya melibatkan \r\n
+Berarti kini, perbaiki cara display pada HTML function detail supaya melibatkan \r\n  			done!!
+
+BUAT POLA TSB UNTUK CODE EXPLANATION JUGA.			done!!		<< namun hanya untuk tanda petik saja (non CRLF).
+											eksplanasi tidak perlu CRLF.
+
+PROGRESS NOW
+* Add function tidak perlu memasukkan id karena sudah auto generate
+
+* Perbaiki ukuran gambar pada function detail
+
+* Perbesar ukuran teks pengetikan pada Add new function
+
+* Fiksasi tombol Back To Main Menu
+
+* Perbaiki display item pada index.php
+
+* Matplotlib Brief History pada index.php
+
+* Jiplak semua functionality pada 
+	Add new function	>> Add new activities
+	Function detail		>> Activities detail
+
+SETELAH BEBERAPA POIN INI, MAKA DAPAT DINYATAKAN PROJEK KELAR
 
 
 CATATAN CATATAN:::
