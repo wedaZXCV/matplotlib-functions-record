@@ -226,7 +226,7 @@ GARIS BESAR (perulangan penjelasan kembali):
 
 
 + Add Function
-	Menambahkan fungsi yg baru		>> Tidak perlu memasukkan id karena sudah auto generate
+	Menambahkan fungsi yg baru		>> Tidak perlu memasukkan id karena sudah auto generate		done!!
 						>> Source code tidak perlu menuliskan \" untuk tanda " (penulisan tanda petik sudah auto jadi ")
 							done!! 	<< bersamaan dengan CRLF nya.
 
@@ -393,7 +393,7 @@ Berarti kini, perbaiki cara display pada HTML function detail supaya melibatkan 
 BUAT POLA TSB UNTUK CODE EXPLANATION JUGA.			done!!		<< namun hanya untuk tanda petik saja (non CRLF).
 											eksplanasi tidak perlu CRLF.
 
-PROGRESS NOW
+
 * Add function tidak perlu memasukkan id karena sudah auto generate
 	buat menjadi hidden tag inputnya.
 	yang diinputkan adalah id yang belum ada... jadi kita harus mengecek terlebih dahulu id yang dibutuhkan.
@@ -408,10 +408,10 @@ PROGRESS NOW
 
 PROGRESS NOW
 masih terdapat error karena bukan 27, melainkan 2 yg 
-not yet for filling the 27 (aka 25, 26, 28, 29, dst)...    still cannot fill the empty id no 27		<< ini penting ketika mengingat adanya hapus fungsi yang akan menyebabkan keloncatan lubang seperti pada baris angka di atas.
+not yet for filling the 27 (aka 25, 26, 28, 29, dst)...    still cannot fill the empty id no 27		<< ini penting ketika mengingat adanya hapus fungsi yang akan menyebabkan keloncatan lubang seperti pada baris angka di atas.		done!!
 	
 
-
+PROGRESS NOW
 * Perbaiki ukuran gambar pada function detail
 
 * Perbesar ukuran teks pengetikan pada Add new function

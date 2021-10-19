@@ -80,6 +80,9 @@
         echo "Error: ". $sql . "<br>" . $conn->error;
       }
       //close connection happens on the moment after idt declaration
+
+      //display arrayNew (retreived ids)
+      
     }
   ?>
         <!--INPUT HIDDEN FOR THE ID -->
@@ -88,11 +91,12 @@
         // code bellow for idt declaration. $idt is the value assigned to input "fu-id"
         $result = $conn->query($sql);
         CloseCon($conn);
+        $arrayNew = array();
         if ($result->num_rows > 0){
           $itt = 0;
           $idt = 0;
           while($row = $result->fetch_assoc()) {
-            $temp = $row["id"];
+            array_push($arrayNew, $row["id"]);
             if($itt == 0){
               if($row["id"] != 0){
                 $idt = 0;
@@ -102,14 +106,17 @@
                 // no break;
               }
             } else {
+              // jumping case
               if(($row["id"] - $temp) > 1){
                 $idt = $temp + 1;
                 break;
+                // normal case
               } else{
                 $idt = $row["id"] + 1;
               }
             }
             $itt += 1;
+            $temp = $row["id"];
           }
         }
         echo($idt)?>>
@@ -160,6 +167,14 @@
         </div>
       </form>
     </div>
+
+    <?php 
+      foreach($arrayNew as $value){
+        echo($value);
+        echo(" ");
+      }
+    
+    ?>
 
   </div>
   
