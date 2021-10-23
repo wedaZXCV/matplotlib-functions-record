@@ -47,7 +47,10 @@
               ".$row['expl']."
             </p>
             <div class=\"description-images\">
-              <img src=\"".$row['img']."\" alt=\"description image\">
+              <img src=\"".$row['img']."\" alt=\"description image\"
+              width=\"800\"
+              height=\"600\"
+              >
             </div>
             <hr>
             <br>

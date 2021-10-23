@@ -72,18 +72,26 @@ body {
   margin-top: 10px;
 } */
 
+.labels{
+  font-size: 18px;
+}
+
 .input-fields{
-  width: 700px;
+  width: 880px;
   height: 35px;
   border-radius: 5px;
   padding-left: 20px;
+  padding-right: 10px;
   margin-top: 10px;
+  font-size: 16px;
 }
 
 .input-fields-large{
   padding-left: 20px;
+  padding-right: 10px;
   border-radius: 5px;
   margin-top: 10px;
+  font-size: 16px;
 }
 
 .input-fields-short{
@@ -96,26 +104,6 @@ body {
 
 .search-bar{
   margin-right: 0%;
-}
-
-#input-code{
-  padding-left: 20px;
-  border-radius: 5px;
-  margin-top: 10px;
-}
-
-#input-expl{
-  padding-left: 20px;
-  border-radius: 5px;
-  margin-top: 10px;
-}
-
-#image-url{
-  width: 700px;
-  height: 35px;
-  border-radius: 5px;
-  padding-left: 20px;
-  margin-top: 10px;
 }
 
 #save-function{

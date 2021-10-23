@@ -33,7 +33,6 @@
     } else{
 
       $id = $_POST["fu-id"];
-      echo "<br><br><br>"; echo($id);
       $name = $_POST["fu-na"];
       $scod = $_POST["fu-co"];
       // change the quotes into \" in order to be successfully able to get inserted in SQL
@@ -70,7 +69,6 @@
       //Do connection and send to MySQL server
       include 'db-connection.php';
       $conn = OpenCon();
-      echo "Connected Successfully";
       
 
       $sql = "INSERT INTO functi VALUES($id, '$name', '$explaination', '$scod', '$imagie');";
@@ -141,7 +139,7 @@
             <label for="input-code" id="code-label">Source code (type the code bellow)</label>
           </div>
           <div class="fields">
-            <textarea id="input-code" name="fu-co" class="input-fields-large" rows = "30" cols = "100" required> </textarea>
+            <textarea id="input-code" name="fu-co" class="input-fields-large" rows = "30" cols = "95" required> </textarea>
           </div>
         </div>
         <div class="form-rows">
@@ -149,7 +147,7 @@
             <label for="input-expl" id="expl-label">Code explanation</label>
           </div>
           <div class="fields">
-            <textarea id="input-expl" name="fu-ex" class="input-fields-large" rows = "50" cols = "100" required> </textarea>
+            <textarea id="input-expl" name="fu-ex" class="input-fields-large" rows = "50" cols = "95" required> </textarea>
           </div>
         </div>
 

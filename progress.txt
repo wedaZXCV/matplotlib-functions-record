@@ -412,9 +412,9 @@ not yet for filling the 27 (aka 25, 26, 28, 29, dst)...    still cannot fill the
 	
 
 PROGRESS NOW
-* Perbaiki ukuran gambar pada function detail
+* Perbaiki ukuran gambar pada function detail			done!!
 
-* Perbesar ukuran teks pengetikan pada Add new function
+* Perbesar ukuran teks pengetikan pada Add new function		done!!
 
 * Fiksasi tombol Back To Main Menu
 
