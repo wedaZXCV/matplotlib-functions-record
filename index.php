@@ -62,14 +62,27 @@
       <!-- AND n more-->
       <!-- SEE ALL BUTTON -->
       <ul class="activities-list">
-        <li class="activity-list-item">Create Bar Graph</li>
-        <li class="activity-list-item">Create Histogram</li>
-        <li class="activity-list-item">Calculate Scatter</li>
-        <li class="activity-list-item">Plot matrixes</li>
-        <li class="activity-list-item">Draw images</li>
+        <?php 
+        include "db-connection.php";
+        $conn = OpenCon();
+        $sql = "SELECT id, name FROM activities ORDER BY id DESC LIMIT 5;";
+          $result = $conn->query($sql);
+          if ($result->num_rows > 0){
+            // output data of each row
+            while($row = $result->fetch_assoc()){ 
+              echo"
+              <form action=\"activity-detail.php\" method=\"post\" class=\"fu-form-li\">
+                <button type=\"submit\" name=\"clkd-btn\" value=\"".$row["id"]."\" class=\"fu-li-btn\">
+                  <li class=\"function-list-item\">".$row["name"]."</li>
+                </button>
+              </form>
+              ";
+            }
+          }
+        ?>
       </ul>
       <div class="see-more">
-        <a href="activities-page.html" class="see-more-activities">see more...</a>
+        <a href="activities-page-copy.php" class="see-more-activities">see more...</a>
       </div>
     </div>
 
@@ -88,9 +101,7 @@
       
       <ul class="functions-list">
         <?php 
-          include "db-connection.php";
-          $conn = OpenCon();
-          $sql = "SELECT id, name FROM functi LIMIT 5;";
+          $sql = "SELECT id, name FROM functi ORDER BY id DESC LIMIT 5;";
           $result = $conn->query($sql);
           if ($result->num_rows > 0){
             // output data of each row

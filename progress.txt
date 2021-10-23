@@ -416,15 +416,17 @@ PROGRESS NOW
 
 * Perbesar ukuran teks pengetikan pada Add new function		done!!
 
-* Fiksasi tombol Back To Main Menu
+* Fiksasi tombol Back To Main Menu				done!!
 
-* Perbaiki display item pada index.php
+* Perbaiki display item pada index.php				done!!	<< recently added, ORDER BY id DESC LIMIT 5.
 
 * Matplotlib Brief History pada index.php
 
 * Jiplak semua functionality pada 
 	Add new function	>> Add new activities
 	Function detail		>> Activities detail
+
+* Finishing		<< hilangkan echo bla bla bla.... dan juga file copy - copy
 
 SETELAH BEBERAPA POIN INI, MAKA DAPAT DINYATAKAN PROJEK KELAR
 
