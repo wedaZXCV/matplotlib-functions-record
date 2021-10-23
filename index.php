@@ -50,7 +50,7 @@
     </div>
 
     <div class="learned-activities">
-      <form action="activities-page.php" method="post" class="main-button">
+      <form action="activities-page-copy.php" method="post" class="main-button">
         <div class="button">
           <button type="submit" class="button-button" id="go-to-activity-list">Activity list</button>
         </div>

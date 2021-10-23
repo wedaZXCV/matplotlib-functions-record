@@ -10,7 +10,9 @@
 <body>
   <nav>
     <div class="button">
-      <button class="button-button back-to-main-page" type="submit">Back to main page</button>
+      <form action="index.php" method="GET">
+        <button class="button-button back-to-main-page" type="submit">Back to main page</button>
+      </form>
     </div>
     <div class="wrapper">
       <h1> ACTIVITY LIST PAGE</h1>

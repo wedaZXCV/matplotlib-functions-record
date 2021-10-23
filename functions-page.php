@@ -9,9 +9,9 @@
 </head>
 <body>
   <nav>
-    <div class="button">
+    <form action="index.php" method="GET">
       <button class="button-button back-to-main-page" type="submit">Back to main page</button>
-    </div>
+    </form>
     <div class="wrapper">
       <h1> FUNCTION LIST PAGE</h1>
     </div>
