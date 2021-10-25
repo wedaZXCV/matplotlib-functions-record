@@ -34,6 +34,7 @@
             //RegEx untuk menemukan delimiter ; antarfungsi.
             $pattern = "/[;]+/";
             $components = preg_split($pattern,$row["fuid"], -1, PREG_SPLIT_NO_EMPTY);
+            $sourceCode = nl2br(htmlspecialchars($row["scod"]));
             //Print list
             echo "
             <div id=\"activity-title\">
@@ -55,10 +56,11 @@
             <hr>
             <br>
             <h2> Source Code </h2>
-            <p>
-              ".$row['scod']."
-            </p>
-            
+            <div class=\"source-code\">
+              <p>
+                ".$sourceCode."
+              </p>
+            </div>
             <hr>
             <br>
             <h2> Engaged Functions </h2>
