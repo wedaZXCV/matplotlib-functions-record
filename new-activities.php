@@ -19,15 +19,102 @@
 
 <div class="container">
   <div class="form-container">
-    <form action="new-activities.php" method="post" id="newActivity-form">
-      <div class="form-rows">
-        <div class="labels">
-          <label for="activity-id" id="id-label">Activity id</label>
-        </div>
-        <div class="fields">
-          <input type="text" name="ac-id" id="activity-id" class="input-fields" placeholder="Enter the function id" required>
-        </div>
-      </div>
+    <form action="new-activities.php" method="post" id="newActivity-form"> 
+    <?php 
+    //Prepare values to store in database table
+    //Check if the form is not filled yet
+    if(!isset($_POST['ac-id']) || !isset($_POST['ac-na'])){
+      include 'db-connection.php';
+      $conn = OpenCon();
+      //close connection happens on the moment after idt declaration
+    } else{
+
+      $id = $_POST['ac-id'];
+      $name = $_POST['ac-na'];
+      $expl = $_POST['ac-ex'];
+      $scod = $_POST['ac-co'];
+      $img = $_POST['ac-img'];
+      $fuid = $_POST['ac-fu-id'];
+
+      // change the quotes into \" in order to be successfully able to get inserted in SQL
+      $scod = preg_replace("$\"|\'$","\\\"",$scod);
+
+      // detect endline carrieage return
+      preg_match_all("$\r$",$scod,$matches, PREG_OFFSET_CAPTURE);
+      // echo "<pre>"; print_r($matches); echo "</pre>";   // now we can detect the location of \r
+      
+      //all we need to do then is re-insert \r\n into the location as \\r\\n
+      $newLineLoc = array();
+      foreach($matches[0] as $key=>$value){
+        if($key > 0){
+          $newLineLoc[$key] = $matches[0][$key][1] + ($key * 2);
+        } else {
+          $newLineLoc[$key] = $matches[0][$key][1];
+        }
+      }
+      // firstly first we need to remove any real \r and \n whitespace char
+      $scod = preg_replace("#\n|\r#", "", $scod);
+      foreach($newLineLoc as $key=>$value){
+        $scod = substr_replace($scod, "\\r\\n", $newLineLoc[$key], 0);
+      }
+
+      //if the \r\n happens multiple of times, yields things like \r\r\r\n\n\n
+      // then we need to regex it into a single \r\n
+      $scod = preg_replace('/(\\\r){2,}(\\\n){2,}/', "\\r\\n", $scod); // it must be three times to match \ (backslash)
+      
+      $expl = preg_replace("$\"$","\\\"",$expl);
+      $expl = preg_replace("$\'$","\\'",$expl);
+
+      //Do connection and send to MySQL server
+      include 'db-connection.php';
+      $conn = OpenCon();
+
+      $sql = "INSERT INTO activities VALUES($id, '$name', '$expl', '$scod', '$img', '$fuid');";
+      if($conn->query($sql) === TRUE){
+        echo "New record created successfully";
+      } else {
+        echo "Error: ". $sql . "<br>" . $conn->error;
+      }
+      //close connection happens on the moment after idt declaration
+    }
+    ?>
+
+      <!--INPUT HIDDEN FOR THE ID -->
+      <input type="hidden" name="ac-id" value=<?php 
+        $sql = "SELECT id FROM activities ORDER BY id;";
+        // code bellow for idt declaration. $idt is the value assigned to input "ac-id"
+        $result = $conn->query($sql);
+        CloseCon($conn);
+        $arrayNew = array();
+        if ($result->num_rows > 0){
+          $itt = 0;
+          $idt = 0;
+          while($row = $result->fetch_assoc()) {
+            array_push($arrayNew, $row["id"]);
+            if($itt == 0){
+              if($row["id"] != 0){
+                $idt = 0;
+                break;
+              } else {
+                $idt = $row["id"];
+                // no break;
+              }
+            } else {
+              // jumping case
+              if(($row["id"] - $temp) > 1){
+                $idt = $temp + 1;
+                break;
+                // normal case
+              } else{
+                $idt = $row["id"] + 1;
+              }
+            }
+            $itt += 1;
+            $temp = $row["id"];
+          }
+        }
+        echo($idt)?>>
+
       <div class="form-rows">
         <div class="labels">
           <label for="input-name" id="name-label">Activity name</label>
@@ -77,23 +164,5 @@
     </form>
   </div>
 </div>
-<?php 
-  if(!isset($_POST['ac-id']) || !isset($_POST['ac-na'])){
-
-  } else{
-      include "db-connection.php";
-      $id = $_POST['ac-id'];
-      $name = $_POST['ac-na'];
-      $expl = $_POST['ac-ex'];
-      $scod = $_POST['ac-co'];
-      $img = $_POST['ac-img'];
-      $fuid = $_POST['ac-fu-id'];
-      $conn = OpenCon();
-      $sql = "INSERT INTO activities VALUES($id, '$name', '$expl', '$scod', '$img', '$fuid');";
-      $result = $conn->query($sql);
-      echo "insert complete";
-      CloseCon($conn);
-  }
-?>
 </body>
 </html>

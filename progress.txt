@@ -420,7 +420,7 @@ PROGRESS NOW
 
 * Perbaiki display item pada index.php				done!!	<< recently added, ORDER BY id DESC LIMIT 5.
 
-* Matplotlib Brief History pada index.php
+* Matplotlib Brief History pada index.php			done!!
 
 * Jiplak semua functionality pada 
 	Add new function	>> Add new activities

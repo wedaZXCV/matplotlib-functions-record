@@ -56,7 +56,7 @@
 
         $totalItem = count($nameArr);
         
-        $displaying = 2;
+        $displaying = 15;
         //for temporary, we divide by item displayed
         $pages = ceil($totalItem / $displaying);
         // here we have difference with the starting point based on $pageNumber
@@ -146,7 +146,7 @@
         $sql = "SELECT * FROM activities;";
         $result = $conn->query($sql);
         $totalItem = $result->num_rows;
-        $displaying = 2;
+        $displaying = 15;
         $pages = ceil($totalItem / $displaying);
         // later, print only $displaying items
         $displayArr = array();

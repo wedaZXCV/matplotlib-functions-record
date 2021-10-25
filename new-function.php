@@ -166,14 +166,6 @@
       </form>
     </div>
 
-    <?php 
-      foreach($arrayNew as $value){
-        echo($value);
-        echo(" ");
-      }
-    
-    ?>
-
   </div>
   
 </body>

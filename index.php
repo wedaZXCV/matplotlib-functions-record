@@ -18,9 +18,10 @@
   </nav>
   <div class="container">
     <div class="history">
-      <p>
+      <p style="text-align: center; font-size: 18px;">
         <!-- ADD MATPLOTLIB HISTORY -->
-        Here is some of matplotlib history.
+        Matplotlib is a cross-platform, data visualization and graphical plotting library for Python and its numerical extension NumPy. As such, it offers a viable open source alternative to MATLAB. Developers can also use matplotlib’s APIs (Application Programming Interfaces) to embed plots in GUI applications.
+
       </p>
     </div>
     <div class="box-create">
