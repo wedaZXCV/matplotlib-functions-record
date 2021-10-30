@@ -112,6 +112,8 @@
             $itt += 1;
             $temp = $row["id"];
           }
+        } else{
+          $idt = 0;
         }
         echo($idt)?>>
 

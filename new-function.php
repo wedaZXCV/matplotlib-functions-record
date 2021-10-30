@@ -84,8 +84,14 @@
     }
   ?>
         <!--INPUT HIDDEN FOR THE ID -->
+
+
+
+
+
         <input type="hidden" name="fu-id" value=<?php 
         $sql = "SELECT id FROM functi ORDER BY id;";
+        
         // code bellow for idt declaration. $idt is the value assigned to input "fu-id"
         $result = $conn->query($sql);
         CloseCon($conn);
@@ -116,6 +122,8 @@
             $itt += 1;
             $temp = $row["id"];
           }
+        } else{
+          $idt = 0;
         }
         echo($idt)?>>
 
