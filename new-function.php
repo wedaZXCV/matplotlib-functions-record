@@ -106,7 +106,7 @@
                 $idt = 0;
                 break;
               } else {
-                $idt = $row["id"];
+                $idt = $row["id"]+1;
                 // no break;
               }
             } else {
