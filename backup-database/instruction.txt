@@ -1,0 +1,48 @@
+The .ibd file here is an inoDB database engine file. The file contains data the user stored into database. So this is actually a backup file. Follow these instructions in order to apply the data into new database. Everything here is done within MySQL Command Line 8.0 - Unicode. Ignore "->" sign.
+
+1. Create new database
+
+-> CREATE DATABASE matplotlib;
+
+2. Create new table inside the previouly created database.
+	In order to create the appropriate table, see structure.txt
+	The structure is reffered to functi.ibd.
+	It is the data structure whose the table functi was created.
+
+-> CREATE TABLE functi (entryName dataType anotherConfig, entryName dataType anotherConfig, entryName dataType anotherConfig);
+
+3. Remove the new, empty table's tablespace   (so remove it's linking from current database movement recording). This function bellow will delete the new table.ibd
+
+-> ALTER TABLE functi DISCARD TABLESPACE;
+
+4. Copy and paste the backup functi.ibd into MySQL database location. It's on:
+C:\ProgramData\MySQL\MySQL Server 8.0\Data\database_name\<here>
+
+5. Re-enable the new table's tablespace (in other word link the correct just now pasted data from backup)
+
+-> ALTER TABLE functi IMPORT TABLESPACE;
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< DONE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Now the process to restore or mobilize database from the backup is completed.
+
+resources:
+https://www.linkedin.com/pulse/how-restore-tables-from-ibd-file-priyanka-chouhan
+https://dev.mysql.com/doc/mysql-enterprise-backup/3.11/en/partial.restoring.single.html
+https://fileinfo.com/extension/ibd
+
+
+deWeda (c) 2021, all right reserved.
+
+
+
+
+
+
+
+
+
+
+
+

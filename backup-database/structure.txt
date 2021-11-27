@@ -1,0 +1,5 @@
+CREATE TABLE functi (id INT(255) UNSIGNED,
+name VARCHAR(50),
+explaination TEXT(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+scod MEDIUMTEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+imagie TEXT(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci);

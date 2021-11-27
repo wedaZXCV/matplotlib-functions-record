@@ -6,7 +6,7 @@ Creating data base and save data via POST PHP to our local database......
 * cari  GARIS BESAR   untuk mendapatkan informasi progress ke depan secara garis besar.	(Fitur yang harus ada untuk dikatakan dia lengkap).
 * cari   PROGRESS LATER   untuk mendapatkan informasi perbaikan ke depan yang agak mendetail.
 
-
+* cari kata kunci>>>>>>>>  debugging       , untuk mendapatkan kemajuan pengecekan error yang masih perlu diperbaiki setelah projek selesai.
 
 
 At the first time, we need to figure out how to do some mechanism to accomplish....
@@ -431,6 +431,11 @@ PROGRESS NOW
 * Finishing		<< hilangkan echo bla bla bla.... dan juga file copy - copy	I hope so... sambil test sambil jalan.
 
 SETELAH BEBERAPA POIN INI, MAKA DAPAT DINYATAKAN PROJEK KELAR
+
+debugging:	
+* terdapat beberapa kegagalan saat mengedit fungsi. Save Changes, pada beberapa kejadian tidak mampu mengubah data pada MySQL.
+
+* perlu me-regex backslash juga sebelum bisa memasukkan fungsi baru atau aktivitas baru
 
 
 CATATAN CATATAN:::
