@@ -178,6 +178,13 @@ body {
   font-weight: bold;
 }
 
+.list-item-notexist{
+  color: black;
+  font-size: 18px;
+  font-style: oblique;
+  font-weight: bold;
+}
+
 #list-con{
   padding-left: 0px;
   list-style-type: none;

@@ -82,7 +82,7 @@
             echo "
             <div class=\"list-item-btn-back\">
               <div class=\"fu-li-activity-detail\">
-                <li class=\"list-item\">".$poin."</li>
+                <li class=\"list-item-notexist\">".$poin."</li>
               </div>
               <div class=\"modifier\">
                 <div class=\"add-new-fu-button\">
